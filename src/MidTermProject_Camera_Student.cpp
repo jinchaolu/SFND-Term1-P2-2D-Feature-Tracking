@@ -16,6 +16,10 @@
 #include "dataStructures.h"
 #include "matching2D.hpp"
 
+/* STUDENT INCLUDES*/
+#include <deque>
+/* END OF STUDENT INCLUDES*/
+
 using namespace std;
 
 /* MAIN PROGRAM */
@@ -37,7 +41,8 @@ int main(int argc, const char *argv[])
 
     // misc
     int dataBufferSize = 2;       // no. of images which are held in memory (ring buffer) at the same time
-    vector<DataFrame> dataBuffer; // list of data frames which are held in memory at the same time
+    // vector<DataFrame> dataBuffer; // list of data frames which are held in memory at the same time
+    deque<DataFrame> dataBuffer;
     bool bVis = false;            // visualize results
 
     /* MAIN LOOP OVER ALL IMAGES */
@@ -63,6 +68,15 @@ int main(int argc, const char *argv[])
         DataFrame frame;
         frame.cameraImg = imgGray;
         dataBuffer.push_back(frame);
+
+        // Check the size of dataBuffer
+        // If it is larger than dataBufferSize, remove the frame in the front
+        if (dataBuffer.size() > dataBufferSize) {
+	        dataBuffer.pop_front();
+        }
+
+        // Check size again
+        assert(dataBuffer.size() <= dataBufferSize);
 
         //// EOF STUDENT ASSIGNMENT
         cout << "#1 : LOAD IMAGE INTO BUFFER done" << endl;
