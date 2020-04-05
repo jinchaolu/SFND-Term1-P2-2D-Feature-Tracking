@@ -122,6 +122,14 @@ int main(int argc, const char *argv[])
         if (bFocusOnVehicle)
         {
             // ...
+            // Keep keypoints only inside the rectangle 
+            vector<cv::KeyPoint> kp_filtered;
+            for (auto kp : keypoints) {
+                if (vehicleRect.contains(kp.pt)) {
+                    kp_filtered.push_back(kp);
+                }
+            }
+            keypoints = kp_filtered;
         }
 
         //// EOF STUDENT ASSIGNMENT
