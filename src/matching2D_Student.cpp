@@ -169,7 +169,7 @@ void detKeypointsShiTomasi(vector<cv::KeyPoint> &keypoints, cv::Mat &img, bool b
 
 //// TASK MP.2 -> add the following keypoint detectors in file matching2D.cpp and enable string-based selection based on detectorType
 //// -> HARRIS, FAST, BRISK, ORB, AKAZE, SIFT
-void detKeypointsHarris(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, bool bVis=false) {
+void detKeypointsHarris(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, bool bVis) {
 
     // Detector parameters
     int blockSize = 2;     // for every pixel, a blockSize × blockSize neighborhood is considered
@@ -195,7 +195,6 @@ void detKeypointsHarris(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, bool
     // STUDENTS NEET TO ENTER THIS CODE (C3.2 Atom 4)
 
     // Look for prominent corners and instantiate keypoints
-    vector<cv::KeyPoint> keypoints;
     double maxOverlap = 0.0; // max. permissible overlap between two features in %, used during non-maxima suppression
     for (size_t j = 0; j < dst_norm.rows; j++)
     {
@@ -235,7 +234,7 @@ void detKeypointsHarris(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, bool
 
     // visualize keypoints
     if (bVis) {
-        windowName = "Harris Corner Detection Results";
+        string windowName = "Harris Corner Detection Results";
         cv::namedWindow(windowName, 5);
         cv::Mat visImage = dst_norm_scaled.clone();
         cv::drawKeypoints(dst_norm_scaled, keypoints, visImage, cv::Scalar::all(-1), cv::DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
@@ -247,7 +246,7 @@ void detKeypointsHarris(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, bool
 
 //// TASK MP.2 -> add the following keypoint detectors in file matching2D.cpp and enable string-based selection based on detectorType
 //// -> HARRIS, FAST, BRISK, ORB, AKAZE, SIFT
-void detKeypointsModern(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, std::string detectorType, bool bVis=false){
+void detKeypointsModern(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, std::string detectorType, bool bVis){
     if (detectorType.compare("FAST") == 0)
     {
         auto fast = cv::FastFeatureDetector::create(); 
@@ -279,11 +278,11 @@ void detKeypointsModern(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, std:
 
     // visualize keypoints
     if (bVis) {
-        visImage = img.clone();
-        cv::drawKeypoints(img, kptsFAST, visImage, cv::Scalar::all(-1), cv::DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
-        windowName = detectorType + " Keypoints Detection Results";
+        cv::Mat visImage = img.clone();
+        cv::drawKeypoints(img, keypoints, visImage, cv::Scalar::all(-1), cv::DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
+        string windowName = detectorType + " Keypoints Detection Results";
         cv::namedWindow(windowName, 2);
-        imshow(windowName, visImage);
+        cv::imshow(windowName, visImage);
         cv::waitKey(0);
     }
 }
