@@ -95,9 +95,21 @@ int main(int argc, const char *argv[])
         {
             detKeypointsShiTomasi(keypoints, imgGray, false);
         }
+        else if (detectorType.compare("HARRIS") == 0) {
+            detKeypointsHarris(keypoints, imgGray, false);
+        }
+        else if (detectorType.compare("FAST")  == 0 ||
+                 detectorType.compare("BRISK") == 0 ||
+                 detectorType.compare("ORB")   == 0 ||
+                 detectorType.compare("AKAZE") == 0 ||
+                 detectorType.compare("AKAZE") == 0   ) {
+            detKeypointsModern(keypoints, imgGray, detectorType, false)
+        }
         else
         {
             //...
+            // Throw invalid argument error
+            throw invalid_argument("Invalid detector type: " + detectorType);
         }
         //// EOF STUDENT ASSIGNMENT
 
