@@ -83,19 +83,19 @@ void descKeypoints(vector<cv::KeyPoint> &keypoints, cv::Mat &img, cv::Mat &descr
     //// TASK MP.4 -> add the following descriptors in file matching2D.cpp and enable string-based selection based on descriptorType
     //// -> BRIEF, ORB, FREAK, AKAZE, SIFT
     else if (descriptorType.compare("BRIEF") == 0) {
-        extractor = cv::xfeatures2d::BriefDescriptorExtractor::Create();
+        extractor = cv::xfeatures2d::BriefDescriptorExtractor::create();
     }
     else if (descriptorType.compare("ORB") == 0) {
-        extractor = cv::ORB::Create();
+        extractor = cv::ORB::create();
     }
     else if (descriptorType.compare("FREAK") == 0) {
-        extractor = cv::xfeatures2d::FREAK::Create();
+        extractor = cv::xfeatures2d::FREAK::create();
     }
     else if (descriptorType.compare("AKAZE") == 0) {
-        extractor = cv::AKAZE::Create();
+        extractor = cv::AKAZE::create();
     }
     else if (descriptorType.compare("SIFT") == 0) {
-        extractor = cv::xfeatures2d::SIFT::Create();
+        extractor = cv::xfeatures2d::SIFT::create();
     }
     else
     {

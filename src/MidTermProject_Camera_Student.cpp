@@ -103,7 +103,7 @@ int main(int argc, const char *argv[])
                  detectorType.compare("ORB")   == 0 ||
                  detectorType.compare("AKAZE") == 0 ||
                  detectorType.compare("AKAZE") == 0   ) {
-            detKeypointsModern(keypoints, imgGray, detectorType, false)
+            detKeypointsModern(keypoints, imgGray, detectorType, false);
         }
         else
         {
