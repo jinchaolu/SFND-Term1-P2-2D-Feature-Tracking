@@ -267,7 +267,7 @@ void detKeypointsModern(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, std:
         auto fast = cv::FastFeatureDetector::create(); 
         fast -> detect(img, keypoints);
     }
-    else if (detectorType.compare("BIRSK") == 0) {
+    else if (detectorType.compare("BRISK") == 0) {
         auto brisk = cv::BRISK::create(); 
         brisk -> detect(img, keypoints);
     }

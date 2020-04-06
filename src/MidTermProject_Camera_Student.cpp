@@ -52,12 +52,17 @@ int main(int argc, const char *argv[])
     vector<string> v_matcher;
     vector<string> v_selector;
 
-    // v_detector = {"SHITOMASI", "HARRIS", "FAST", "BRISK", "ORB", "AKAZE", "SIFT"};
+    v_detector = {"SHITOMASI", "HARRIS", "FAST", "BRISK", "ORB", "AKAZE", "SIFT"};
     // v_descriptor = {"BRISK", "BRIEF", "ORB", "FREAK", "AKAZE", "SIFT"};
     // v_matcher = {"MAT_BF", "MAT_FLANN"};
     // v_selector = {"SEL_NN", "SEL_KNN"};
-    v_detector = {"SHITOMASI", "HARRIS"};
-    v_descriptor = {"BRISK", "BRIEF"};
+    // v_detector = {"SHITOMASI", "HARRIS"};
+    // v_detector = {"BRISK", "ORB", "AKAZE", "SIFT"};
+    // v_descriptor = {"BRISK", "BRIEF"};
+    // v_descriptor = {"ORB"};
+    // v_descriptor = {"FREAK"};
+    // v_descriptor = {"AKAZE"};
+    v_descriptor = {"SIFT"};
     v_matcher = {"MAT_BF", "MAT_FLANN"};
     v_selector = {"SEL_NN", "SEL_KNN"};
 
