@@ -18,6 +18,7 @@
 
 /* STUDENT INCLUDES*/
 #include <deque>
+#include <ctime>
 /* END OF STUDENT INCLUDES*/
 
 using namespace std;
@@ -252,6 +253,49 @@ int main(int argc, const char *argv[])
         }
 
     } // eof loop over all images
+
+    // Create csv file with date and time
+    time_t t_current;
+    struct tm* t_info;
+    char buf[100];
+    string fn_output;
+
+    time(&t_current); // Get time now
+    t_info = localtime(&t_current);
+
+    strftime(buf, 100, "%Y_%m_%d_%H_%M_%S.csv", t_info );
+    fn_output = string(buf);
+
+    ofstream outfile(fn_output);
+
+    // Initialize detector array
+    // Initialize descriptor array
+    // Initialize matcher array
+    // Initialize selector array
+    vector<string> v_detector;
+    vector<string> v_descriptor;
+    vector<string> v_matcher;
+    vector<string> v_selector;
+
+    v_detector = {"SHITOMASI", "HARRIS", "FAST", "BRISK", "ORB", "AKAZE", "SIFT"};
+    v_descriptor = {"BRISK", "BRIEF", "ORB", "FREAK", "AKAZE", "SIFT"};
+    v_matcher = {"MAT_BF", "MAT_FLANN"};
+    v_selector = {"SEL_NN", "SEL_KNN"};
+
+    for (auto detector : v_detector) {
+        for (auto descriptor : v_descriptor) {
+            for (auto matcher : v_matcher) {
+                for (auto selector : v_selector) {
+                    // Write data to csv file with comma delimiter
+                    cout << detector << ", " << descriptor << ", " << matcher << ", " << selector << endl;
+                    outfile << detector << ", " << descriptor << ", " << matcher << ", " << selector << endl;
+                }
+            }
+        }
+    }
+
+    // Close csv file
+    outfile.close();
 
     return 0;
 }
