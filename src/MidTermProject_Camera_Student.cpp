@@ -175,8 +175,19 @@ int main(int argc, const char *argv[])
 
             vector<cv::DMatch> matches;
             string matcherType = "MAT_BF";        // MAT_BF, MAT_FLANN
-            string descriptorType = "DES_BINARY"; // DES_BINARY, DES_HOG
+            // string descriptorCategory = "DES_BINARY"; // DES_BINARY, DES_HOG
             string selectorType = "SEL_NN";       // SEL_NN, SEL_KNN
+
+            // In matcher, for descriptor category, select binary or histogram of gradients
+            // Binary descriptor category includes: BRISK, BRIEF, ORB, FREAK and AKAZE
+            // Histogram of gradients descriptor category includes: SIFT
+            string descriptorCategory = "DES_BINARY"; // DES_BINARY, DES_HOG
+            if (descriptorType.compare("SIFT") == 0) {
+                descriptorCategory = "DES_HOG";
+            }
+            else {
+                descriptorCategory = "DES_BINARY";
+            }
 
             //// STUDENT ASSIGNMENT
             //// TASK MP.5 -> add FLANN matching in file matching2D.cpp
@@ -184,7 +195,7 @@ int main(int argc, const char *argv[])
 
             matchDescriptors((dataBuffer.end() - 2)->keypoints, (dataBuffer.end() - 1)->keypoints,
                              (dataBuffer.end() - 2)->descriptors, (dataBuffer.end() - 1)->descriptors,
-                             matches, descriptorType, matcherType, selectorType);
+                             matches, descriptorCategory, matcherType, selectorType);
 
             //// EOF STUDENT ASSIGNMENT
 
