@@ -8,6 +8,7 @@ void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::Key
                       std::vector<cv::DMatch> &matches, std::string descriptorCategory, std::string matcherType, std::string selectorType)
 {
     // configure matcher
+    // cout << "Probe 4-1" << endl;
     bool crossCheck = false;
     cv::Ptr<cv::DescriptorMatcher> matcher;
 
@@ -26,6 +27,10 @@ void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::Key
         if (descSource.type() != CV_32F)
         { // OpenCV bug workaround : convert binary descriptors to floating point due to a bug in current OpenCV implementation
             descSource.convertTo(descSource, CV_32F);
+        }
+
+        if (descRef.type() != CV_32F)
+        { // OpenCV bug workaround : convert binary descriptors to floating point due to a bug in current OpenCV implementation
             descRef.convertTo(descRef, CV_32F);
         }
 
@@ -41,6 +46,7 @@ void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::Key
     }
 
     // perform matching task
+    // cout << "Probe 4-2" << endl;
     if (selectorType.compare("SEL_NN") == 0)
     { // nearest neighbor (best match)
 
@@ -54,16 +60,20 @@ void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::Key
     { // k nearest neighbors (k=2)
 
         // ...
+        // cout << "Probe 4-3" << endl;
 
         int k = 2;
         vector<vector<cv::DMatch>> knn_matches;
         double t = (double)cv::getTickCount();
+        // cout << "Probe 4-4" << endl;
         matcher->knnMatch(descSource, descRef, knn_matches, k); // finds the 2 best matches
+        // cout << "Probe 4-5" << endl;
         t = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
         cout << " (KNN) with n=" << knn_matches.size() << " matches in " << 1000 * t / 1.0 << " ms" << endl;
 
         // STUDENT TASK
         // filter matches using descriptor distance ratio test
+        // cout << "Probe 4-6" << endl;
         double minDescDistRatio = 0.8;
         for (auto it = knn_matches.begin(); it != knn_matches.end(); ++it)
         {

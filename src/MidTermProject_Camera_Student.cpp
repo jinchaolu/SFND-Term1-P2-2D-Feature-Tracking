@@ -41,7 +41,7 @@ int main(int argc, const char *argv[])
     ofstream outfile(fn_output);
 
     // Create file header
-    outfile << "Detector, Descriptor, Matcher, Selector, Number of Keypoints, Size of Neighborhood, Number of Matched Keypoints, Time (Keypoints Detection), Time (Descriptor Extraction), Time (Total)"<< endl;
+    outfile << "Detector, Descriptor, Matcher, Selector, Number of Keypoints, Size of Neighborhood, Number of Matched Keypoints, Time (ms Keypoints Detection), Time (ms Descriptor Extraction), Time (ms Total)"<< endl;
 
     // Initialize detector array
     // Initialize descriptor array
@@ -52,8 +52,12 @@ int main(int argc, const char *argv[])
     vector<string> v_matcher;
     vector<string> v_selector;
 
-    v_detector = {"SHITOMASI", "HARRIS", "FAST", "BRISK", "ORB", "AKAZE", "SIFT"};
-    v_descriptor = {"BRISK", "BRIEF", "ORB", "FREAK", "AKAZE", "SIFT"};
+    // v_detector = {"SHITOMASI", "HARRIS", "FAST", "BRISK", "ORB", "AKAZE", "SIFT"};
+    // v_descriptor = {"BRISK", "BRIEF", "ORB", "FREAK", "AKAZE", "SIFT"};
+    // v_matcher = {"MAT_BF", "MAT_FLANN"};
+    // v_selector = {"SEL_NN", "SEL_KNN"};
+    v_detector = {"SHITOMASI", "HARRIS"};
+    v_descriptor = {"BRISK", "BRIEF"};
     v_matcher = {"MAT_BF", "MAT_FLANN"};
     v_selector = {"SEL_NN", "SEL_KNN"};
 
@@ -224,6 +228,7 @@ int main(int argc, const char *argv[])
                         {
 
                             /* MATCH KEYPOINT DESCRIPTORS */
+                            // cout << "Probe 1" << endl;
 
                             vector<cv::DMatch> matches;
                             // string matcherType = "MAT_BF";        // MAT_BF, MAT_FLANN
@@ -231,10 +236,12 @@ int main(int argc, const char *argv[])
                             // string descriptorCategory = "DES_BINARY"; // DES_BINARY, DES_HOG
                             // string selectorType = "SEL_NN";       // SEL_NN, SEL_KNN
                             string selectorType = e_selector;       // SEL_NN, SEL_KNN
+                            // cout << "Probe 2" << endl;
 
                             // In matcher, for descriptor category, select binary or histogram of gradients
                             // Binary descriptor category includes: BRISK, BRIEF, ORB, FREAK and AKAZE
                             // Histogram of gradients descriptor category includes: SIFT
+                            // cout << "Probe 3" << endl;
                             string descriptorCategory = "DES_BINARY"; // DES_BINARY, DES_HOG
                             if (descriptorType.compare("SIFT") == 0) {
                                 descriptorCategory = "DES_HOG";
@@ -248,6 +255,7 @@ int main(int argc, const char *argv[])
                             //// TASK MP.6 -> add KNN match selection and perform descriptor distance ratio filtering with t=0.8 in file matching2D.cpp
 
                             //// TASK MP.9 -> Log descriptor running time
+                            // cout << "Probe 4" << endl;
                             double t_descriptor = (double)cv::getTickCount();
 
                             matchDescriptors((dataBuffer.end() - 2)->keypoints, (dataBuffer.end() - 1)->keypoints,
@@ -256,6 +264,7 @@ int main(int argc, const char *argv[])
 
                             //// EOF STUDENT ASSIGNMENT
                             //// TASK MP.9 -> Log descriptor running time
+                            // cout << "Probe 5" << endl;
                             t_descriptor = ((double)cv::getTickCount() - t_descriptor) / cv::getTickFrequency();
 
                             // store matches in current data frame
@@ -275,7 +284,7 @@ int main(int argc, const char *argv[])
                             cout << "Total running time = " << 1000 * (t_detector +t_descriptor) / 1.0 << " ms" << endl;
 
                             // Write data to csv file
-                            outfile << detector << ", " << descriptor << ", " << matcher << ", " << selector << ", " << keypoints.size()  << ", " << keypoints[0].size  << ", " << matches.size()  << ", " << 1000 * t_detector / 1.0  << ", " << 1000 * t_descriptor / 1.0  << ", " <<1000 * (t_detector +t_descriptor) / 1.0 << endl;
+                            outfile << e_detector << ", " << e_descriptor << ", " << e_matcher << ", " << e_selector << ", " << keypoints.size()  << ", " << keypoints[0].size  << ", " << matches.size()  << ", " << 1000 * t_detector / 1.0  << ", " << 1000 * t_descriptor / 1.0  << ", " <<1000 * (t_detector +t_descriptor) / 1.0 << endl;
 
                             // visualize matches between current and previous image
                             bVis = false;
