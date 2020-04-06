@@ -233,7 +233,7 @@ int main(int argc, const char *argv[])
             cout << "Total running time = " << 1000 * (t_detector +t_descriptor) / 1.0 << " ms" << endl;
 
             // visualize matches between current and previous image
-            bVis = true;
+            bVis = false;
             if (bVis)
             {
                 cv::Mat matchImg = ((dataBuffer.end() - 1)->cameraImg).clone();
