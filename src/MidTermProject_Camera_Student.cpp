@@ -158,6 +158,11 @@ int main(int argc, const char *argv[])
         (dataBuffer.end() - 1)->keypoints = keypoints;
         cout << "#2 : DETECT KEYPOINTS done" << endl;
 
+        //// TASK MP.7 -> Count the number of keypoints and note the neighborhood size for all detectors you've implemented
+        cout << "Detector type = " << detectorType << endl;
+        cout << "Number of filtered keypoints = " << keypoints.size() << endl;
+        cout << "Neighborhood size = " << keypoints[0].size << endl;
+
         /* EXTRACT KEYPOINT DESCRIPTORS */
 
         //// STUDENT ASSIGNMENT
