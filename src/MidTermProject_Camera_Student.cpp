@@ -219,6 +219,8 @@ int main(int argc, const char *argv[])
             (dataBuffer.end() - 1)->kptMatches = matches;
 
             cout << "#4 : MATCH KEYPOINT DESCRIPTORS done" << endl;
+            //// TASK MP.8 -> Count the number of matched keypoints for all possible combinations of detectors and descriptors
+            // Use the BF aaproach with the descriptor distance ratio set to 0.8
 
             cout << "Detector type = " << detectorType << endl;
             cout << "Descriptor type = " << descriptorType << endl;
