@@ -91,6 +91,9 @@ int main(int argc, const char *argv[])
         //// TASK MP.2 -> add the following keypoint detectors in file matching2D.cpp and enable string-based selection based on detectorType
         //// -> HARRIS, FAST, BRISK, ORB, AKAZE, SIFT
 
+        //// TASK MP.9 -> Log detector running time
+        double t_detector = (double)cv::getTickCount();
+
         if (detectorType.compare("SHITOMASI") == 0)
         {
             detKeypointsShiTomasi(keypoints, imgGray, false);
@@ -112,6 +115,9 @@ int main(int argc, const char *argv[])
             throw invalid_argument("Invalid detector type: " + detectorType);
         }
         //// EOF STUDENT ASSIGNMENT
+
+        //// TASK MP.9 -> Log detector running time
+        t_detector = ((double)cv::getTickCount() - t_detector) / cv::getTickFrequency();
 
         //// STUDENT ASSIGNMENT
         //// TASK MP.3 -> only keep keypoints on the preceding vehicle
@@ -193,16 +199,30 @@ int main(int argc, const char *argv[])
             //// TASK MP.5 -> add FLANN matching in file matching2D.cpp
             //// TASK MP.6 -> add KNN match selection and perform descriptor distance ratio filtering with t=0.8 in file matching2D.cpp
 
+            //// TASK MP.9 -> Log descriptor running time
+            double t_descriptor = (double)cv::getTickCount();
+
             matchDescriptors((dataBuffer.end() - 2)->keypoints, (dataBuffer.end() - 1)->keypoints,
                              (dataBuffer.end() - 2)->descriptors, (dataBuffer.end() - 1)->descriptors,
                              matches, descriptorCategory, matcherType, selectorType);
 
             //// EOF STUDENT ASSIGNMENT
+            //// TASK MP.9 -> Log descriptor running time
+            t_descriptor = ((double)cv::getTickCount() - t_descriptor) / cv::getTickFrequency();
 
             // store matches in current data frame
             (dataBuffer.end() - 1)->kptMatches = matches;
 
             cout << "#4 : MATCH KEYPOINT DESCRIPTORS done" << endl;
+
+            cout << "Detector type = " << detectorType << endl;
+            cout << "Descriptor type = " << descriptorType << endl;
+            cout << "Matcher type = " << matcherType << endl;
+            cout << "Selector type = " << selectorType << endl;
+            cout << "Number of matched keypoints = " << matches.size() << endl;
+            cout << "Detector running time = " << 1000 * t_detector / 1.0 << " ms" << endl;
+            cout << "Descriptor running time = " << 1000 * t_descriptor / 1.0 << " ms" << endl;
+            cout << "Total running time = " << 1000 * (t_detector +t_descriptor) / 1.0 << " ms" << endl;
 
             // visualize matches between current and previous image
             bVis = true;
