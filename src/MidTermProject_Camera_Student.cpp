@@ -53,6 +53,7 @@ int main(int argc, const char *argv[])
     vector<string> v_selector;
 
     v_detector = {"SHITOMASI", "HARRIS", "FAST", "BRISK", "ORB", "AKAZE", "SIFT"};
+    // AKAZE descriptors can only be used with KAZE or AKAZE keypoints.
     // v_descriptor = {"BRISK", "BRIEF", "ORB", "FREAK", "AKAZE", "SIFT"};
     // v_matcher = {"MAT_BF", "MAT_FLANN"};
     // v_selector = {"SEL_NN", "SEL_KNN"};
@@ -61,13 +62,20 @@ int main(int argc, const char *argv[])
     // v_descriptor = {"BRISK", "BRIEF"};
     // v_descriptor = {"ORB"};
     // v_descriptor = {"FREAK"};
-    // v_descriptor = {"AKAZE"};
-    v_descriptor = {"SIFT"};
+    v_descriptor = {"AKAZE"};
+    // v_descriptor = {"SIFT"};
     v_matcher = {"MAT_BF", "MAT_FLANN"};
     v_selector = {"SEL_NN", "SEL_KNN"};
 
     for (auto e_detector : v_detector) {
         for (auto e_descriptor : v_descriptor) {
+            if (e_descriptor.compare("AKAZE") == 0) {
+                // AKAZE descriptors can only be used with KAZE or AKAZE keypoints. 
+                // Skip all other detector
+                if (e_detector.compare("AKAZE") != 0) {
+                   continue; 
+                }
+            }
             for (auto e_matcher : v_matcher) {
                 for (auto e_selector : v_selector) {
                     // Write data to csv file with comma delimiter
@@ -218,11 +226,14 @@ int main(int argc, const char *argv[])
                         //// TASK MP.4 -> add the following descriptors in file matching2D.cpp and enable string-based selection based on descriptorType
                         //// -> BRIEF, ORB, FREAK, AKAZE, SIFT
 
+                        // cout << "Probe 3-1" << endl;
+
                         cv::Mat descriptors;
                         // string descriptorType = "BRISK"; // BRIEF, ORB, FREAK, AKAZE, SIFT
                         string descriptorType = e_descriptor; // BRIEF, ORB, FREAK, AKAZE, SIFT
                         descKeypoints((dataBuffer.end() - 1)->keypoints, (dataBuffer.end() - 1)->cameraImg, descriptors, descriptorType);
                         //// EOF STUDENT ASSIGNMENT
+                        // cout << "Probe 3-2" << endl;
 
                         // push descriptors for current frame to end of data buffer
                         (dataBuffer.end() - 1)->descriptors = descriptors;

@@ -136,7 +136,9 @@ void descKeypoints(vector<cv::KeyPoint> &keypoints, cv::Mat &img, cv::Mat &descr
 
     // perform feature description
     double t = (double)cv::getTickCount();
+    // cout << "Probe 3-3" << endl;
     extractor->compute(img, keypoints, descriptors);
+    // cout << "Probe 3-4" << endl;
     t = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
     cout << descriptorType << " descriptor extraction in " << 1000 * t / 1.0 << " ms" << endl;
 }
