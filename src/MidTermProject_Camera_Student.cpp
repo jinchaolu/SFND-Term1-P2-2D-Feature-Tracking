@@ -53,19 +53,24 @@ int main(int argc, const char *argv[])
     vector<string> v_selector;
 
     v_detector = {"SHITOMASI", "HARRIS", "FAST", "BRISK", "ORB", "AKAZE", "SIFT"};
+    
     // AKAZE descriptors can only be used with KAZE or AKAZE keypoints.
-    // v_descriptor = {"BRISK", "BRIEF", "ORB", "FREAK", "AKAZE", "SIFT"};
-    // v_matcher = {"MAT_BF", "MAT_FLANN"};
-    // v_selector = {"SEL_NN", "SEL_KNN"};
+    v_descriptor = {"BRISK", "BRIEF", "ORB", "FREAK", "AKAZE", "SIFT"};
+    
+    // v_detector = {"SIFT"};
+    // v_detector = {"SHITOMASI", "SIFT"};
     // v_detector = {"SHITOMASI", "HARRIS"};
     // v_detector = {"BRISK", "ORB", "AKAZE", "SIFT"};
+    // v_descriptor = {"BRIEF", "FREAK", "AKAZE", "SIFT"};
     // v_descriptor = {"BRISK", "BRIEF"};
     // v_descriptor = {"ORB"};
     // v_descriptor = {"FREAK"};
-    v_descriptor = {"AKAZE"};
+    // v_descriptor = {"AKAZE"};
     // v_descriptor = {"SIFT"};
     v_matcher = {"MAT_BF", "MAT_FLANN"};
+    // v_matcher = {"MAT_FLANN"};
     v_selector = {"SEL_NN", "SEL_KNN"};
+    // v_selector = {"SEL_KNN"};
 
     for (auto e_detector : v_detector) {
         for (auto e_descriptor : v_descriptor) {
@@ -73,13 +78,22 @@ int main(int argc, const char *argv[])
                 // AKAZE descriptors can only be used with KAZE or AKAZE keypoints. 
                 // Skip all other detector
                 if (e_detector.compare("AKAZE") != 0) {
-                   continue; 
+                    continue; 
+                }
+            }
+            else if (e_descriptor.compare("ORB") == 0) {
+                // SIFT detector + ORB descriptor will throw out of memory error
+                // Skip for now
+                // terminate called after throwing an instance of 'cv::Exception'
+                // what():  OpenCV(4.1.0) /opencv/modules/core/src/alloc.cpp:55: error: (-4:Insufficient memory) Failed to allocate 70166064384 bytes in function 'OutOfMemoryError'
+                if (e_detector.compare("SIFT") == 0) {
+                    continue; 
                 }
             }
             for (auto e_matcher : v_matcher) {
                 for (auto e_selector : v_selector) {
                     // Write data to csv file with comma delimiter
-                    // cout << detector << ", " << descriptor << ", " << matcher << ", " << selector << endl;
+                    cout << e_detector << ", " << e_descriptor << ", " << e_matcher << ", " << e_selector << endl;
                     // outfile << detector << ", " << descriptor << ", " << matcher << ", " << selector << endl;
                     
                     /* INIT VARIABLES AND DATA STRUCTURES */
@@ -105,6 +119,9 @@ int main(int argc, const char *argv[])
 
                     for (size_t imgIndex = 0; imgIndex <= imgEndIndex - imgStartIndex; imgIndex++)
                     {
+                        // Tell user the index of image
+                        cout << "Current image index is " << imgIndex << endl;
+
                         /* LOAD IMAGE INTO BUFFER */
 
                         // assemble filenames for current index
@@ -318,15 +335,21 @@ int main(int argc, const char *argv[])
                                 cv::imshow(windowName, matchImg);
                                 cout << "Press key to continue to next image" << endl;
                                 cv::waitKey(0); // wait for key to be pressed
+
+                                // Release memory
+                                matchImg.release();
                             }
                             bVis = false;
                         }
-
+                        // Release memory
+                        img.release();
+                        imgGray.release();
+                        descriptors.release();
                     } // eof loop over all images
-                }
-            }
-        }
-    }
+                } // eof loop over selector
+            } // eof loop over matcher
+        } // eof loop over descriptor
+    } // eof loop over detector
 
     // Close csv file
     outfile.close();
