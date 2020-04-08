@@ -39,61 +39,6 @@ See the classroom instruction and code comments for more details on each of thes
   * Mac: same deal as make - [install Xcode command line tools](https://developer.apple.com/xcode/features/)
   * Windows: recommend using [MinGW](http://www.mingw.org/)
 
-
-
-
-## (TODO) Setup Instructions (abbreviated)  
-
-Meet the [`Prerequisites/Dependencies`](/README.md#L16)  
-
-### Ubuntu 
-
-```bash
-$> sudo apt install libpcl-dev
-$> cd ~
-$> git clone https://github.com/udacity/SFND_Lidar_Obstacle_Detection.git
-$> cd SFND_Lidar_Obstacle_Detection
-$> mkdir build && cd build
-$> cmake ..
-$> make
-$> ./environment
-```
-
-### Windows 
-
-http://www.pointclouds.org/downloads/windows.html
-
-### MAC
-
-#### Install via Homebrew
-1. install [homebrew](https://brew.sh/)
-2. update homebrew 
-	```bash
-	$> brew update
-	```
-3. add  homebrew science [tap](https://docs.brew.sh/Taps) 
-	```bash
-	$> brew tap brewsci/science
-	```
-4. view pcl install options
-	```bash
-	$> brew options pcl
-	```
-5. install PCL 
-	```bash
-	$> brew install pcl
-	```
-
-#### (TODO)Prebuilt Binaries via Universal Installer
-http://www.pointclouds.org/downloads/macosx.html  
-NOTE: very old version 
-
-#### (TODO)Build from Source
-
-[PCL Source Github](https://github.com/PointCloudLibrary/pcl)
-
-[PCL Mac Compilation Docs](http://www.pointclouds.org/documentation/tutorials/compiling_pcl_macosx.php)  
-
 ## (TODO)Project Description  
 Directory Structure
 ```
@@ -348,18 +293,28 @@ sudo apt-get update && sudo apt-get upgrade -y
 Please (do your best to) stick to [Google's C++ style guide](https://google.github.io/styleguide/cppguide.html).  
 
 ## (TODO)Project Rubric  
-### 1. Compiling and Testing  
-#### 1.1 The submission must compile.  
+### 1. Mid-Term Report  
+#### 1.1 MP.0 Mid-Term Report  
 Yes, it does compile.  
-### 2. Obstacle Detection  
-#### 2.1 Bounding boxes enclose appropriate objects.  
+### 2. Data Buffer  
+#### 2.1 MP.1 Data Buffer Optimization  
 Yes, it does.  
-#### 2.2 Objects are consistently detected across frames in the video.  
+### 3. Keypoints  
+#### 3.1 MP.2 Keypoint Detection  
 Yes, it does.  
-#### 2.3 Segmentation is implemented in the project.  
+#### 3.2 MP.3 Keypoint Removal  
 Yes, it does.  
-#### 2.4 Clustering is implemented in the project.  
+### 4. Descriptors  
+#### 4.1 MP.4 Keypoint Descriptors  
 Yes, it does.  
-### 3. Code Effciency  
-#### 3.1 The methods in the code should avoid unnecessary calculations.  
+#### 4.2 MP.5 Descriptor Matching  
+Yes, it does.  
+#### 4.3 MP.6 Descriptor Distance Ratio  
+Yes, it does.  
+### 5. Performance  
+#### 5.1 MP.7 Performance Evaluation 1  
+Yes, it does.  
+#### 5.2 MP.8 Performance Evaluation 2  
+Yes, it does.  
+#### 5.3 MP.9 Performance Evaluation 3  
 Yes, it does.  
