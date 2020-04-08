@@ -42,6 +42,34 @@ See the classroom instruction and code comments for more details on each of thes
 ## (TODO)Project Description  
 Directory Structure
 ```
+.SFND-Term1-P2-2D-Feature-Tracking
+├── CMakeLists.txt
+├── images
+│   ├── keypoints.png
+│   └── KITTI
+│       └── 2011_09_26
+│           └── image_00
+│               └── data
+│                   ├── 0000000000.png
+│                   ├── 0000000001.png
+│                   ├── 0000000002.png
+│                   ├── 0000000003.png
+│                   ├── 0000000004.png
+│                   ├── 0000000005.png
+│                   ├── 0000000006.png
+│                   ├── 0000000007.png
+│                   ├── 0000000008.png
+│                   └── 0000000009.png
+├── LICENSE
+├── README.md
+├── results
+│   └── 2020_04_07_03_26_37.csv
+└── src
+    ├── dataStructures.h
+    ├── matching2D.hpp
+    ├── matching2D_Student.cpp
+    └── MidTermProject_Camera_Student.cpp
+
 .SFND_Lidar_Obstacle_Detection                          # Lidar Obstacle Detection Project
 ├── CMakeLists.txt                                      # compiler instructions
 ├── media                                               # media files
