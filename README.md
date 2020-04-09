@@ -2,27 +2,13 @@
 Project 2 of Udacity Sensor Fusion Nanodegree  
 <img src="images/keypoints.png" width="820" height="248" />
 
-## (TODO)Overview  
-In this project, you will create a C++ script to render the simulation environment with given Lidar dataset which you should recoginze and detect the objects, clustering and drawing 3D bounding boxes on those objects across frames in the video consistently.  
-
-You will learn what is and how to use PCL (Point Cloud Library) then create and represent a Lidar sensor in a simulator.  
-
-Then, you will learn how to use RANSAC (stands for Random Sample Consensus, is a method for detecting outliers in data) algorithm for robust line fitting with outliers.  
-
-Next, you will learn how to clustering obstacles with euclidean clustering function from PCL, inserting points into KD-Tree and drawing a 3D box on those obstacles.  
-
-Finally, you will implement all you have learned above in the C++ script and analyze given Lidar data to recognize and detect the obstacles from frame to frame in a given video stream consistently.  
-
-
-(Below from original repository)  
-The idea of the camera course is to build a collision detection system - that's the overall goal for the Final Project. As a preparation for this, you will now build the feature tracking part and test various detector / descriptor combinations to see which ones perform best. This mid-term project consists of four parts:
+## Overview  
+In this project, you will create a C++ script to recognize and track the feature from a series of images. You are going to evaluate the performance of feature tracking with various combinations of detectors, descriptors, matchers. Then pick the best combination for your future objection detection and tracking use purpose. This 2D feature tracking technique will be used in a collision detection system in later course. This project consists of four parts:
 
 * First, you will focus on loading images, setting up data structures and putting everything into a ring buffer to optimize memory load. 
 * Then, you will integrate several keypoint detectors such as HARRIS, FAST, BRISK and SIFT and compare them with regard to number of keypoints and speed. 
 * In the next part, you will then focus on descriptor extraction and matching using brute force and also the FLANN approach we discussed in the previous lesson. 
 * In the last part, once the code framework is complete, you will test the various algorithms in different combinations and compare them with regard to some performance measures. 
-
-See the classroom instruction and code comments for more details on each of these parts. Once you are finished with this project, the keypoint matching part will be set up and you can proceed to the next lesson, where the focus is on integrating Lidar points and on object detection using deep-learning. 
 
 ## Prerequisites/Dependencies  
 * cmake >= 2.8
