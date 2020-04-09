@@ -49,7 +49,7 @@ Directory Structure
 ├── LICENSE
 ├── README.md                                       # Readme file
 ├── results                                         # Result data for analysis
-│   └── 2020_04_07_03_26_37.csv
+│   └── 2020_04_07_03_26_37.csv                     # Raw data
 └── src
     ├── dataStructures.h                            # Data structure header file
     ├── matching2D.hpp                              # matching2D header file
@@ -95,7 +95,7 @@ sudo apt-get update && sudo apt-get upgrade -y
 ## Code Style  
 Please (do your best to) stick to [Google's C++ style guide](https://google.github.io/styleguide/cppguide.html).  
 
-## (TODO)Project Rubric  
+## Project Rubric  
 ### 1. Mid-Term Report  
 #### 1.1 MP.0 Mid-Term Report  
 You are reading it.  
@@ -119,9 +119,69 @@ They are selectable by a string here [MidTermProject_Camera_Student.cpp (Line 26
 #### 4.3 MP.6 Descriptor Distance Ratio  
 This feature is implemented here [matching2D_Student.cpp (Line 74-87)](./src/matching2D_Student.cpp#L74-87).  
 ### 5. Performance  
-#### 5.1 (TODO) MP.7 Performance Evaluation 1  
-(Process the data and generate a table for comparison and visualization)  
-#### 5.2 (TODO) MP.8 Performance Evaluation 2  
-(Process the data and generate a table for comparison and visualization)  
-#### 5.3 (TODO) MP.9 Performance Evaluation 3  
-(Process the data and generate a table for comparison and visualization)  
+#### 5.1 MP.7 Performance Evaluation 1  
+The number of keypoints on the preceding vehicle within the giving boundary for all 10 images were counted with different combinations of detectors, descriptors, matchers and selectors.  
+The neighborhood size was recorded for analysis.
+
+The full comparison result could be found here in sheet **MP.7** of ["report.xlsx"](./results/report.xlsx).  
+
+Raw data could be found here in sheet **Raw Data** of ["report.xlsx"](./results/report.xlsx).  
+
+A table created for performance evaluation and score is given.  
+| Detector | Descriptor | Neighborhood Size | Score |
+|----------|------------|-------------------|-------|
+| FAST     | BRISK      | 7                 | 5     |
+| FAST     | BRIEF      | 7                 | 4     |
+| FAST     | ORB        | 7                 | 3     |
+| FAST     | FREAK      | 7                 | 2     |
+| FAST     | SIFT       | 7                 | 1     |  
+#### 5.2 MP.8 Performance Evaluation 2  
+The number of matched keypoints on the preceding vehicle within the giving boundary for all 10 images were counted with different combinations of detectors, descriptors, matchers and selectors.  
+
+The full comparison result could be found here in sheet **MP.8** of ["report.xlsx"](./results/report.xlsx).  
+
+Raw data could be found here in sheet **Raw Data** of ["report.xlsx"](./results/report.xlsx).  
+
+A table created for performance evaluation and score is given.  
+| Detector | Descriptor | Score |
+|----------|------------|-------|
+| FAST     | BRISK      | 5     |
+| FAST     | BRIEF      | 4     |
+| FAST     | ORB        | 3     |
+| FAST     | FREAK      | 2     |
+| FAST     | SIFT       | 1     |  
+
+#### 5.3 MP.9 Performance Evaluation 3  
+
+Log the time it takes for keypoint detection and descriptor extraction. The results must be entered into a spreadsheet and based on this data, the TOP3 detector / descriptor combinations must be recommended as the best choice for our purpose of detecting keypoints on vehicles.
+
+
+The time of keypoint detection and the time for descriptor extraction were logged with different combinations of detectors, descriptors, matchers and selectors.  
+
+The full comparison result could be found here in sheet **MP.9** of ["report.xlsx"](./results/report.xlsx).  
+
+Raw data could be found here in sheet **Raw Data** of ["report.xlsx"](./results/report.xlsx).  
+
+A table created for performance evaluation and score is given.  
+| Detector | Descriptor | Score |
+|----------|------------|-------|
+| FAST     | ORB        | 5     |
+| FAST     | BRIEF      | 4     |
+| FAST     | FREAK      | 3     |
+| FAST     | BRISK      | 2     |
+| FAST     | SIFT       | 1     |  
+
+**Summary**  
+The TOP3 detector / descriptor combinations are recommened here as the best choice for our purpose of detecting keypoints on vehicles.  
+* FAST + BRIEF
+* FAST + BRISK
+* FAST + ORB
+
+A table created for performance evaluation and final score is calculated by summing up all previous scores.  
+| No.  | Detector | Descriptor | Score from MP.7 | Score from MP.8 | Score from MP.9 | Final Score |
+|------|----------|------------|-----------------|-----------------|-----------------|-------------|
+| No.1 | FAST     | BRIEF      | 4               | 4               | 4               | 12          |
+| No.2 | FAST     | BRISK      | 5               | 5               | 2               | 12          |
+| No.3 | FAST     | ORB        | 3               | 3               | 5               | 11          |
+| No.4 | FAST     | FREAK      | 2               | 2               | 3               | 7           |
+| No.5 | FAST     | SIFT       | 1               | 1               | 1               | 3           |  
