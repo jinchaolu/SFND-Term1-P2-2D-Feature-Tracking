@@ -49,7 +49,8 @@ Directory Structure
 ├── LICENSE
 ├── README.md                                       # Readme file
 ├── results                                         # Result data for analysis
-│   └── 2020_04_07_03_26_37.csv                     # Raw data
+│   ├── 2020_04_07_03_26_37.csv                     # Raw data
+│   └── report.xlsx                                 # Processed data
 └── src
     ├── dataStructures.h                            # Data structure header file
     ├── matching2D.hpp                              # matching2D header file
