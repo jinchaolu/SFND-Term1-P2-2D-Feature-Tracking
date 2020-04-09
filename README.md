@@ -98,26 +98,30 @@ Please (do your best to) stick to [Google's C++ style guide](https://google.gith
 ## (TODO)Project Rubric  
 ### 1. Mid-Term Report  
 #### 1.1 MP.0 Mid-Term Report  
-Yes, it does compile.  
+You are reading it.  
 ### 2. Data Buffer  
 #### 2.1 MP.1 Data Buffer Optimization  
-Yes, it does.  
+This feature is implemented here [MidTermProject_Camera_Student.cpp (Line 140-149)](./src/MidTermProject_Camera_Student.cpp#L140-149).  
 ### 3. Keypoints  
 #### 3.1 MP.2 Keypoint Detection  
-Yes, it does.  
+Detector HARRIS, FAST, BRISK, ORB, AKAZE and SIFT are implemented here [matching2D_Student.cpp (Line 187-305)](./src/matching2D_Student.cpp#L187-305).  
+They are selectable by a string here [MidTermProject_Camera_Student.cpp (Line 162-190)](./src/MidTermProject_Camera_Student.cpp#L162-190).  
 #### 3.2 MP.3 Keypoint Removal  
-Yes, it does.  
+This feature is implemented here [MidTermProject_Camera_Student.cpp (Line 199-213)](./src/MidTermProject_Camera_Student.cpp#L199-213).  
 ### 4. Descriptors  
 #### 4.1 MP.4 Keypoint Descriptors  
-Yes, it does.  
+Descriptor BRIEF, ORB, FREAK, AKAZE and SIFT are implemented here [matching2D_Student.cpp (Line 98-135)](./src/matching2D_Student.cpp#L98-135).  
+They are selectable by a string here [MidTermProject_Camera_Student.cpp (Line 248-256)](./src/MidTermProject_Camera_Student.cpp#L248-256).  
 #### 4.2 MP.5 Descriptor Matching  
-Yes, it does.  
+Matcher FLANN is implemented here [matching2D_Student.cpp (Line 23-46)](./src/matching2D_Student.cpp#L23-46).  
+Selector KNN is implemented here [matching2D_Student.cpp (Line 59-95)](./src/matching2D_Student.cpp#L59-95).  
+They are selectable by a string here [MidTermProject_Camera_Student.cpp (Line 263-296)](./src/MidTermProject_Camera_Student.cpp#L263-296).  
 #### 4.3 MP.6 Descriptor Distance Ratio  
-Yes, it does.  
+This feature is implemented here [matching2D_Student.cpp (Line 74-87)](./src/matching2D_Student.cpp#L74-87).  
 ### 5. Performance  
-#### 5.1 MP.7 Performance Evaluation 1  
-Yes, it does.  
-#### 5.2 MP.8 Performance Evaluation 2  
-Yes, it does.  
-#### 5.3 MP.9 Performance Evaluation 3  
-Yes, it does.  
+#### 5.1 (TODO) MP.7 Performance Evaluation 1  
+(Process the data and generate a table for comparison and visualization)  
+#### 5.2 (TODO) MP.8 Performance Evaluation 2  
+(Process the data and generate a table for comparison and visualization)  
+#### 5.3 (TODO) MP.9 Performance Evaluation 3  
+(Process the data and generate a table for comparison and visualization)  
