@@ -121,11 +121,10 @@ They are selectable by a string here [MidTermProject_Camera_Student.cpp (Line 26
 This feature is implemented here [matching2D_Student.cpp (Line 74-87)](./src/matching2D_Student.cpp#L74-L87).  
 ### 5. Performance  
 #### 5.1 MP.7 Performance Evaluation 1  
-The number of keypoints on the preceding vehicle within the giving boundary for all 10 images were counted with different combinations of detectors, descriptors, matchers and selectors.  
+The number of **keypoints** on the preceding vehicle within the giving boundary for all 10 images were counted with different combinations of detectors, descriptors, matchers and selectors.  
 The neighborhood size was recorded for analysis.
 
 The full comparison result could be found here in sheet **MP.7** of ["report.xlsx"](./results/report.xlsx).  
-
 Raw data could be found here in sheet **Raw Data** of ["report.xlsx"](./results/report.xlsx).  
 
 A table created for performance evaluation and score is given.  
@@ -137,10 +136,9 @@ A table created for performance evaluation and score is given.
 | FAST     | FREAK      | 7                 | 2     |
 | FAST     | SIFT       | 7                 | 1     |  
 #### 5.2 MP.8 Performance Evaluation 2  
-The number of matched keypoints on the preceding vehicle within the giving boundary for all 10 images were counted with different combinations of detectors, descriptors, matchers and selectors.  
+The number of **matched keypoints** on the preceding vehicle within the giving boundary for all 10 images were counted with different combinations of detectors, descriptors, matchers and selectors.  
 
 The full comparison result could be found here in sheet **MP.8** of ["report.xlsx"](./results/report.xlsx).  
-
 Raw data could be found here in sheet **Raw Data** of ["report.xlsx"](./results/report.xlsx).  
 
 A table created for performance evaluation and score is given.  
@@ -153,14 +151,9 @@ A table created for performance evaluation and score is given.
 | FAST     | SIFT       | 1     |  
 
 #### 5.3 MP.9 Performance Evaluation 3  
-
-Log the time it takes for keypoint detection and descriptor extraction. The results must be entered into a spreadsheet and based on this data, the TOP3 detector / descriptor combinations must be recommended as the best choice for our purpose of detecting keypoints on vehicles.
-
-
-The time of keypoint detection and the time for descriptor extraction were logged with different combinations of detectors, descriptors, matchers and selectors.  
+The time of **keypoint detection** and the time for **descriptor extraction** were logged with different combinations of detectors, descriptors, matchers and selectors.  
 
 The full comparison result could be found here in sheet **MP.9** of ["report.xlsx"](./results/report.xlsx).  
-
 Raw data could be found here in sheet **Raw Data** of ["report.xlsx"](./results/report.xlsx).  
 
 A table created for performance evaluation and score is given.  
@@ -174,9 +167,9 @@ A table created for performance evaluation and score is given.
 
 **Summary**  
 The TOP3 detector / descriptor combinations are recommened here as the best choice for our purpose of detecting keypoints on vehicles.  
-* FAST + BRIEF
-* FAST + BRISK
-* FAST + ORB
+* **FAST + BRIEF**
+* **FAST + BRISK**
+* **FAST + ORB**
 
 A table created for performance evaluation and final score is calculated by summing up all previous scores.  
 | No.  | Detector | Descriptor | Score from MP.7 | Score from MP.8 | Score from MP.9 | Final Score |
