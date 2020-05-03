@@ -68,7 +68,7 @@ Directory Structure
 
 * Clone this repository  
 ```
-git clone https://github.com/udacity/SFND_2D_Feature_Tracking.git
+git clone https://github.com/jinchaolu/SFND-Term1-P2-2D-Feature-Tracking.git
 ```
 * Navigate to the `SFND-Term1-P2-2D-Feature-Tracking` folder  
 ```
